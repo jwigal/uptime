@@ -1,13 +1,24 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
 
-set :scm, :subversion
+set :application, "uptime"
+set :repository,  "git@github.com:jwigal/uptime.git"
+
+set :user, "deploy"  # The server's user for deploys
+#set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
+set :branch, "master"
+set :deploy_via, :remote_cache
+set :deploy_to, "/home/deploy/status.assignr.com/"
+
+#set :repository,  "https://seed2.projectlocker.com/DropkickStudios/assignr/svn/assignr/trunk"
+set :keep_releases, 4 
+
+
+set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+role :web, "status.assignr.com"                          # Your HTTP server, Apache/etc
+role :app, "status.assignr.com"                          # This may be the same as your `Web` server
+role :db,  "status.assignr.com", :primary => true # This is where Rails migrations will run
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
