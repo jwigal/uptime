@@ -36,3 +36,4 @@ gem 'twitter'
 gem "configliere"
 gem "mechanize"
 gem 'will_paginate', '~> 3.0'
+gem 'jquery-rails', '>= 1.0.12'

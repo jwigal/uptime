@@ -1,4 +1,5 @@
-<h1>System Status</h1>
+<% javascript "get_local_time"%>
+<h1>System Status <span>as of</span> <span id="utc"><%= l Time.zone.now.utc, :format => :as_of%></span></h1>
 <ul class="systems">
   <% @services.each do |serv| %>
     <li>
@@ -10,19 +11,21 @@
 
 <% @statuses.each do |date,array| %>
   <h3><%= date %></h3>
-  <% array.each do |status|%>
-    <h4>
-      <%= image_tag(status.image_path ) if status.image_path %>
-      <span class="service"><%= status.service.try(:name) %></span>
-      <%= status.title %>
-      <span class="time"><%= status.formatted_time%></span>
-      <% if can? :manage, status %>
-        <%= link_to 'Edit', edit_status_path(status) %>
-        <%= link_to 'Destroy', status, :confirm => 'Are you sure?', :method => :delete %>
-      <% end %>
-    </h4>
-    <%= simple_format status.description if status.description%>
-  <% end %>
+  <div class="details">
+    <% array.each do |status|%>
+      <h4>
+        <%= image_tag(status.image_path ) if status.image_path %>
+        <span class="service"><%= status.service.try(:name) %></span>
+        <%= status.title %>
+        <span class="time"><%= status.formatted_time%></span>
+        <% if can? :manage, status %>
+          <%= link_to 'Edit', edit_status_path(status) %>
+          <%= link_to 'Destroy', status, :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+      </h4>
+      <%= simple_format status.description if status.description%>
+    <% end %>
+  </div>
 <% end %>
 
 <br />

@@ -4,13 +4,16 @@ class StatusesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @statuses = Status.order("statuses.updated_at desc").where(["statuses.updated_at >= ?", 14.days.ago])
-    @statuses = @statuses.for_public unless current_user 
-    @statuses = @statuses.group_by(&:formatted_date)
-    @services = Service.order("name")
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @statuses }
+      format.html do
+        @statuses = Status.order("statuses.updated_at desc").where(["statuses.updated_at >= ?", 14.days.ago])
+        @statuses = @statuses.for_public unless current_user 
+        @statuses = @statuses.group_by(&:formatted_date)
+        @services = Service.order("name")
+      end
+      format.js do 
+        @time_zone = ActiveSupport::TimeZone[params[:zone]] || ActiveSupport::TimeZone["UTC"]
+      end
     end
   end
 

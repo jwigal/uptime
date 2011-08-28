@@ -2,4 +2,11 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
+  time:
+    formats:
+      as_of: %A %H:%M %Z
+      long_date: %A, %B %d
+      local_time: %l:%M %p %Z
+      utc_time:  %H:%M UTC
+        
