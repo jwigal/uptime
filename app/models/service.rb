@@ -1,5 +1,7 @@
 class Service < ActiveRecord::Base
   has_many :statuses, :order => "statuses.created_at desc"
+  validates_uniqueness_of :name
+  
   delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :to => :current_status
   
   def current_status
@@ -32,6 +34,7 @@ class Service < ActiveRecord::Base
           "Page returned #{page.response["status"]}") unless page.response["status"] == "200"
         page
       end
+      statuses.create :category => Category.up, :title => "Service is back up and running" if is_down?
     rescue Exception => e
       Status.create_with_exception(e, self)
     end

@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+Category.create :name => "Up (Automated)", :is_public => false, :is_up => true, :is_down => false
 Category.create :name => "Down (Automated)", :is_public => false, :is_up => false, :is_down => true
 Category.create :name => "Info", :is_public => true, :image_path => "information.png"
 Category.create :name => "Up", :is_public => true, :is_up => true, :is_down => false, :image_path => "accept.png"
