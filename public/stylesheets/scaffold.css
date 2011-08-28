@@ -1,4 +1,5 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #fff; color: #333; margin: 0}
+
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -54,3 +55,16 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+h1 span{font-weight:normal; font-size: .7em;}
+h1 {background-color:black; color:white; margin: 0; padding: 1em}
+div#yield{ margin: 2em}
+h3{  font-size: 1.5em;}
+h4{margin-left: 2em}
+h4 img{margin-bottom: -3px}
+.details p{margin-left: 3.5em}
+ul.services {list-style-type:none; padding: 0}
+ul.services li {margin: 0}
+ul.services li{  padding-bottom: .7em; padding-left: 1.5em; line-height: 1.5em}
+ul.services li.online { background: url('/images/accept.png') no-repeat 0px 3px;}
+ul.services li.offline { background: url('/images/error.png') no-repeat 0px 3px; }
+ul.services span{ font-weight:bold}

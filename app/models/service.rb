@@ -1,10 +1,11 @@
 class Service < ActiveRecord::Base
   has_many :statuses, :order => "statuses.created_at desc"
   def current_status
-    statuses.first
+    statuses.includes(:service, :category).first
   end
   
-  
+  delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :to => :current_status
+    
   def check
     begin
       Timeout::timeout(30) do

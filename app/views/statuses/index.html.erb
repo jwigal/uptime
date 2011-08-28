@@ -1,9 +1,12 @@
 <% javascript "get_local_time"%>
-<h1>System Status <span>as of</span> <span id="utc"><%= l Time.zone.now.utc, :format => :as_of%></span></h1>
-<ul class="systems">
+<% content_for :title do %>
+  System Status <span>as of</span> <span id="utc"><%= l Time.zone.now.utc, :format => :as_of%></span>
+<% end %>
+<h2>Current Status</h2>
+<ul class="services">
   <% @services.each do |serv| %>
-    <li>
-      <span><%= serv.name%></span>
+    <li class="<%= class_for_service(serv) %>">
+      <span><%= serv.name%>:</span>
       <%= serv.current_status.try(:title)%>
     </li>
   <% end %>

@@ -9,4 +9,12 @@ module ApplicationHelper
     content_for(:head) { stylesheet_link_tag(*files)}
   end
 
+  # setting page title for the application
+  #http://blog.johnwyles.com/articles/2009/02/04/rails-recipe-for-setting-the-page-title-within-a-view/
+  def title(phrase, container = nil)
+    @page_title ||= phrase
+    content_tag(container, @page_title) if container
+  end
+
+
 end

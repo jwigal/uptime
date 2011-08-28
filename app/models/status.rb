@@ -1,9 +1,10 @@
 class Status < ActiveRecord::Base
   belongs_to :category
   belongs_to :service
-  validates_presence_of :category
+  validates_presence_of :category, :service
   
-  delegate :image_path, :to => :category
+  delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :to => :category
+
   def self.create_with_exception(e, serv)
     category = Category.where(:is_public => false, :is_down => true).first
     serv.statuses.create(:category => category, :title => e.class.to_s, 
