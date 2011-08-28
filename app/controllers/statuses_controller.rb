@@ -5,10 +5,10 @@ class StatusesController < ApplicationController
   
   def index
     respond_to do |format|
-      format.html do
+      format.any(:html, :rss) do
         @statuses = Status.order("statuses.updated_at desc").where(["statuses.updated_at >= ?", 14.days.ago])
         @statuses = @statuses.for_public unless current_user 
-        @statuses = @statuses.group_by(&:formatted_date)
+        @statuses = @statuses.group_by(&:formatted_date) unless request.format.to_sym == :rss
         @services = Service.order("name")
       end
       format.js do 

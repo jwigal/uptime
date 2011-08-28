@@ -11,6 +11,19 @@ class Status < ActiveRecord::Base
     :description => ([e.message] + e.backtrace).join("\n"))
   end
   
+  def self.in_last_fifteen_minutes
+    where(["created_at >= ?", 15.minutes.ago])
+  end
+  
+  def self.in_last_hour
+    where(["created_at >= ?", 60.minutes.ago])    
+  end
+  
+  
+  def self.acknowledged
+    where(:acknowledged => true)
+  end
+  
   def formatted_date
     updated_at.strftime("%A, %B %d").gsub(/ 0/,' ')
   end
