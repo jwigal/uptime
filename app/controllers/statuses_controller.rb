@@ -1,9 +1,13 @@
 class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.xml
+  load_and_authorize_resource
+  
   def index
-    @statuses = Status.all
-
+    @statuses = Status.order("statuses.updated_at desc").where(["statuses.updated_at >= ?", 14.days.ago])
+    @statuses = @statuses.for_public unless current_user 
+    @statuses = @statuses.group_by(&:formatted_date)
+    @services = Service.order("name")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @statuses }
@@ -25,7 +29,8 @@ class StatusesController < ApplicationController
   # GET /statuses/new.xml
   def new
     @status = Status.new
-
+    @categories = Category.order("name")
+    @services = Service.order("name")
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @status }
@@ -35,12 +40,16 @@ class StatusesController < ApplicationController
   # GET /statuses/1/edit
   def edit
     @status = Status.find(params[:id])
+    @categories = Category.order("name")
+    @services = Service.order("name")
   end
 
   # POST /statuses
   # POST /statuses.xml
   def create
     @status = Status.new(params[:status])
+    @categories = Category.order("name")
+    @services = Service.order("name")
 
     respond_to do |format|
       if @status.save
@@ -57,6 +66,8 @@ class StatusesController < ApplicationController
   # PUT /statuses/1.xml
   def update
     @status = Status.find(params[:id])
+    @categories = Category.order("name")
+    @services = Service.order("name")
 
     respond_to do |format|
       if @status.update_attributes(params[:status])

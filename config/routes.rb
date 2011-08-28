@@ -1,4 +1,6 @@
 Uptime::Application.routes.draw do
+  resources :services
+
   # devise_for :users
   root :to => "statuses#index"  
     

@@ -2,19 +2,12 @@ require 'bundler/capistrano'
 
 set :application, "uptime"
 set :repository,  "git@github.com:jwigal/uptime.git"
-
 set :user, "deploy"  # The server's user for deploys
-#set :scm_passphrase, "p@ssw0rd"  # The deploy user's password
 set :branch, "master"
 set :deploy_via, :remote_cache
 set :deploy_to, "/home/deploy/status.assignr.com/"
-
-#set :repository,  "https://seed2.projectlocker.com/DropkickStudios/assignr/svn/assignr/trunk"
 set :keep_releases, 4 
-
-
 set :scm, :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "status.assignr.com"                          # Your HTTP server, Apache/etc
 role :app, "status.assignr.com"                          # This may be the same as your `Web` server

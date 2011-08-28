@@ -16,12 +16,16 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :category_id %><br />
+    <%= f.collection_select :category_id, @categories, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
+    <%= f.label :service_id %><br />
+    <%= f.collection_select :service_id, @services, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
     <%= f.submit %>

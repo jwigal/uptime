@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+Category.create :name => "Down (Automated)", :is_public => false, :is_up => false, :is_down => true
+Category.create :name => "Info", :is_public => true, :image_path => "information.png"
+Category.create :name => "Up", :is_public => true, :is_up => true, :is_down => false, :image_path => "accept.png"
+Category.create :name => "Down", :is_public => true, :is_up => false, :is_down => true, :image_path => "cross.png"
+Service.create :name => "assignr.com", :url => "https://assignr.com/login"

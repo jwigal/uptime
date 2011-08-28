@@ -10,12 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110826154353) do
+ActiveRecord::Schema.define(:version => 20110828030901) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.boolean  "is_online"
-    t.boolean  "is_offline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_public"
+    t.boolean  "is_up"
+    t.boolean  "is_down"
+    t.string   "image_path"
+  end
+
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110826154353) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "service_id"
   end
 
   create_table "users", :force => true do |t|

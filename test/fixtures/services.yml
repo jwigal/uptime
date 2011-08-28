@@ -2,14 +2,8 @@
 
 one:
   name: MyString
-  is_up: false
-  is_down: false
+  url: MyString
 
 two:
   name: MyString
-  is_up: false
-  is_down: false
-
-up:
-    name: Up
-    is
+  url: MyString

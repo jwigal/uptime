@@ -26,7 +26,7 @@
 #   # config.params_authenticatable = true
 # 
 #   # Tell if authentication through HTTP Basic Auth is enabled. False by default.
-#   config.http_authenticatable = true
+#   # config.http_authenticatable = false
 # 
 #   # Set this to true to use Basic Auth for AJAX requests.  True by default.
 #   # config.http_authenticatable_on_xhr = true
@@ -46,7 +46,7 @@
 #   config.encryptor = :bcrypt
 # 
 #   # Setup a pepper to generate the encrypted password.
-#   config.pepper = "8247bafa1f5a022c466dba4333a08e56140fcc5dab34592dc54709ba4fe026c832dcf665a9965e9e6c84e88c2b557795f1b51ddff09380c1e8cab7a7618ccbd6"
+#   config.pepper = "1b4d847800ada3834b998869c2d0751c0857e79b97096e075bc47ba4a44441546201d2cfd8379f012ed3187727a0b7b85189ae1a7f3216dbb87c41cbe0c624e3"
 # 
 #   # ==> Configuration for :confirmable
 #   # The time you want to give your user to confirm his account. During this time
@@ -59,7 +59,7 @@
 # 
 #   # ==> Configuration for :rememberable
 #   # The time the user will be remembered without asking for credentials again.
-#   config.remember_for = 2.weeks
+#   # config.remember_for = 2.weeks
 # 
 #   # If true, a valid remember token can be re-used between multiple browsers.
 #   # config.remember_across_browsers = true
@@ -125,19 +125,16 @@
 #   # If you have any extra navigational formats, like :iphone or :mobile, you
 #   # should add them to the navigational formats lists. Default is [:html]
 #   # config.navigational_formats = [:html, :iphone]
-# 
+#   # config.omniauth :twitter,  Settings['twitter.key'], Settings['twitter.secret']
 #   # ==> Warden configuration
 #   # If you want to use other strategies, that are not (yet) supported by Devise,
 #   # you can configure them inside the config.warden block. The example below
 #   # allows you to setup OAuth, using http://github.com/roman/warden_oauth
 #   #
-#   config.omniauth :twitter, Settings['twitter.key'], Settings['twitter.secret']
-# 
-#   
 #   # config.warden do |manager|
 #   #   manager.oauth(:twitter) do |twitter|
-#   #     twitter.consumer_secret = Settings['twitter.secret']
-#   #     twitter.consumer_key  = Settings['twitter.key']
+#   #     twitter.consumer_secret = <YOUR CONSUMER SECRET>
+#   #     twitter.consumer_key  = <YOUR CONSUMER KEY>
 #   #     twitter.options :site => 'http://twitter.com'
 #   #   end
 #   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth

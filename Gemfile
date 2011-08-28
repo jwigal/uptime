@@ -34,3 +34,5 @@ gem "cancan"
 gem "omniauth"
 gem 'twitter'
 gem "configliere"
+gem "mechanize"
+gem 'will_paginate', '~> 3.0'

@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
+  before_filter :require_user  
+  load_and_authorize_resource
+  
   def index
     @categories = Category.all
 
