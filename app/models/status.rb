@@ -15,10 +15,8 @@ class Status < ActiveRecord::Base
   end
   
   def formatted_time
-    updated_at.strftime("%l:%M %Z").gsub(/( 0|^0|^ )/,' ') + 
-    " (#{created_at.utc.strftime("%H:%M")} UTC)"
-    
-
+    updated_at.strftime("%l:%M %p %Z").gsub(/( 0|^0|^ )/,' ') + 
+    " (#{updated_at.utc.strftime("%H:%M")} UTC)"
   end
   
   
