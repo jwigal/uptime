@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <h2 class="first">Contact Us</h2>
+  <p>You can get in touch with us at:</p>
+  <ul>
+    <li><%= mail_to "support@assignr.com", "support@assignr.com", :encode => "javascript" %></li>
+    <li><%= link_to "@assignr", "http://twitter.com/assingr"%> via Twitter</li>    
+  </ul>
+  <ul>
+    <li><%= image_tag "feed.png" %><%= link_to "RSS Feed", statuses_url(:format => "rss")%></li>    
+  </ul>
+</div>

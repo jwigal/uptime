@@ -2,12 +2,13 @@
 <% content_for :title do %>
   System Status <span>as of</span> <span id="utc"><%= l Time.zone.now.utc, :format => :as_of%></span>
 <% end %>
+<%= render "layouts/sidebar" %>
 <h2>Current Status</h2>
 <ul class="services">
   <% @services.each do |serv| %>
     <li class="<%= class_for_service(serv) %>">
       <span><%= serv.name%>:</span>
-      <%= serv.current_status.try(:title)%>
+      <%= serv.current_public_status.try(:title)%>
     </li>
   <% end %>
 </ul>

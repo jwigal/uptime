@@ -55,6 +55,13 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+.group:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
 h1 span{font-weight:normal; font-size: .7em;}
 h1 {background-color:black; color:white; margin: 0; padding: 1em}
 div#yield{ margin: 2em}
@@ -68,3 +75,19 @@ ul.services li{  padding-bottom: .7em; padding-left: 1.5em; line-height: 1.5em}
 ul.services li.online { background: url('/images/accept.png') no-repeat 0px 3px;}
 ul.services li.offline { background: url('/images/error.png') no-repeat 0px 3px; }
 ul.services span{ font-weight:bold}
+#user_nav{float:right}
+
+.sidebar{
+  float:right; 
+  margin: 0em .5em; 
+  border: 1px solid black; 
+  padding: 1em; 
+  width: 12em; 
+  background: #ece6da 
+}
+.sidebar h2.first{margin: 0}
+.sidebar ul {list-style-type: none; margin: 0; padding: 0em }
+.sidebar ul li{ margin: .125em 0; padding: 0}
+h1{background: black url('/images/assignr_com.png') no-repeat 99% }
+.sidebar p{ margin: .5em 0; padding: 0}
+.sidebar img{ margin-right: .25em; margin-bottom: -4px}

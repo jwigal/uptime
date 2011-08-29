@@ -3,10 +3,11 @@ class Status < ActiveRecord::Base
   belongs_to :service
   validates_presence_of :category, :service
   
-  delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :to => :category
+  delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :is_public?, :is_public, :to => :category
 
+  # Given an exception, and a service, create an unpublished "we're offline" status
   def self.create_with_exception(e, serv)
-    category = Category.where(:is_public => false, :is_down => true).first
+    category = Category.unpublished.down.first
     serv.statuses.create(:category => category, :title => e.class.to_s, 
     :description => ([e.message] + e.backtrace).join("\n"))
   end

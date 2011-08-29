@@ -1,10 +1,15 @@
 class Service < ActiveRecord::Base
-  has_many :statuses, :order => "statuses.created_at desc"
+  has_many :statuses, :order => "statuses.created_at desc", :dependent => :delete_all
   validates_uniqueness_of :name
   
   delegate :image_path, :is_down, :is_up, :is_up?, :is_down?, :to => :current_status
   
+  def current_public_status
+    statuses.includes(:service, :category).for_public.first    
+  end
+  
   def current_status
+    s = (published == :published ? :for_public : :scoped)
     statuses.includes(:service, :category).first
   end
   
@@ -34,9 +39,10 @@ class Service < ActiveRecord::Base
           "Page returned #{page.response["status"]}") unless page.response["status"] == "200"
         page
       end
-      statuses.create :category => Category.up, :title => "Service is back up and running" if is_down?
+      statuses.create :category => Category.up.unpublished.first, 
+        :title => "Service is back up and running" if is_down?
     rescue Exception => e
-      Status.create_with_exception(e, self)
+      Status.create_with_exception(e, self) if is_up?
     end
   end
   
@@ -46,7 +52,7 @@ class Service < ActiveRecord::Base
   
   def check_for_24_hour_uptime
     return false if Status.today.down.count > 0
-    statuses.create( :category => Category.up, :title => "All systems running, 24 hour up-time.")
+    statuses.create( :category => Category.up.published.first, :title => "All systems running, 24 hour up-time.")
   end
   
   private

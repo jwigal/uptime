@@ -6,7 +6,7 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
       if user.new_record?
-        can :read, :all
+        can :read, Status, :is_public => true
       else
         can :manage, :all
       end

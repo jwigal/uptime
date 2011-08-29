@@ -1,7 +1,7 @@
 module StatusesHelper
   def class_for_service(service)
-    if service.is_up? : "online"
-    elsif service.is_down? : "offline"
+    if service.current_public_status.is_up? : "online"
+    elsif service.current_public_status.is_down? : "offline"
       "offline"
     else "offline"
     end
