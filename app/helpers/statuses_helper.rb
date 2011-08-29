@@ -3,7 +3,7 @@ module StatusesHelper
     if service.current_public_status.is_up? : "online"
     elsif service.current_public_status.is_down? : "offline"
       "offline"
-    else "offline"
+    else ""
     end
   end
 end
