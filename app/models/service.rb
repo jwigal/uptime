@@ -9,7 +9,6 @@ class Service < ActiveRecord::Base
   end
   
   def current_status
-    s = (published == :published ? :for_public : :scoped)
     statuses.includes(:service, :category).first
   end
   

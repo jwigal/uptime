@@ -37,3 +37,7 @@ gem "configliere"
 gem "mechanize"
 gem 'will_paginate', '~> 3.0'
 gem 'jquery-rails', '>= 1.0.12'
+group :test do
+  gem "shoulda"
+  gem "timecop"
+end
