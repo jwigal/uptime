@@ -79,7 +79,7 @@ ul.services span{ font-weight:bold}
 
 .sidebar{
   float:right; 
-  margin: 0em .5em; 
+  margin: 0em 0em 2em 2em; 
   border: 1px solid black; 
   padding: 1em; 
   width: 12em; 
@@ -92,5 +92,3 @@ h1{background: black url('/images/assignr_com.png') no-repeat 99% }
 .sidebar p{ margin: .5em 0; padding: 0}
 .sidebar img{ margin-right: .25em; margin-bottom: -4px}
 
-h4 span.time:before{content: "["}
-h4 span.time:after{content: "]"}

@@ -19,9 +19,9 @@
     <% array.each do |status|%>
       <h4>
         <%= image_tag(status.image_path ) if status.image_path %>
-        <span class="service"><%= status.service.try(:name) %></span>
+        <span class="service"><%= status.service.try(:name) %>:</span>
         <%= status.title %>
-        <span class="time"><%= status.formatted_time%></span>
+        <span class="time">[<%= status.formatted_time%>]</span>
         <% if can? :manage, status %>
           <%= link_to 'Edit', edit_status_path(status) %>
           <%= link_to 'Destroy', status, :confirm => 'Are you sure?', :method => :delete %>
