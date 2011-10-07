@@ -28,3 +28,4 @@ namespace :deploy do
   end
 end
 after "deploy:update", "deploy:cleanup" 
+after "deploy:update", "deploy:move_database_yml" 
