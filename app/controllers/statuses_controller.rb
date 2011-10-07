@@ -10,6 +10,7 @@ class StatusesController < ApplicationController
         @statuses = @statuses.for_public unless current_user 
         @statuses = @statuses.group_by(&:formatted_date) unless request.format.to_sym == :rss
         @services = Service.order("name")
+#        @dates = Status.select("year(created_at) year, month(created_at) month").group("year(created_at), month(created_at)")
       end
       format.js do 
         @time_zone = ActiveSupport::TimeZone[params[:zone]] || ActiveSupport::TimeZone["UTC"]

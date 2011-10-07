@@ -23,5 +23,8 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  tast :move_database_yml do
+    run "cp /home/deploy/status.assignr.com/shared/database.yml #{File.join(current_path,'config','database.yml')}"
+  end
 end
 after "deploy:update", "deploy:cleanup" 
