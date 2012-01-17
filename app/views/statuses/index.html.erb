@@ -3,6 +3,7 @@
   System Status <span>as of</span> <span id="utc"><%= l Time.zone.now.utc, :format => :as_of%></span>
 <% end %>
 <%= render "layouts/sidebar" %>
+<%#= render "layouts/calendar"%>
 <h2>Current Status</h2>
 <ul class="services">
   <% @services.each do |serv| %>

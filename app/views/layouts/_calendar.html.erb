@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <%= calendar_for @history, :last => Time.zone.now.to_date, :first => 1.year.ago.to_date, :html => {:class => "calendar"} do |t| %>
+    <%#= t.head('sun','mon', 'tue', 'wed', 'thu', 'fri', 'sat') %>
+    <%- t.day(:day_method => :to_date) do |day, events|%>
+    <div class="day">
+      <span class="month"><%= day.strftime("%b") if (day.day == 1) %></span>
+      <%= day.day%>
+      (<%= events.size %>)
+    </div>
+  <% end %>  
+  <% end %>  
+</div>

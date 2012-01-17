@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/raw1z/table_builder.git
+  revision: 8917e3d001ca9045176d25fbf4a1cdffda63d7eb
+  specs:
+    table_builder (0.2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -171,6 +177,7 @@ DEPENDENCIES
   rails (= 3.0.9)
   shoulda
   sqlite3
+  table_builder!
   timecop
   twitter
   will_paginate (~> 3.0)

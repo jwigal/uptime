@@ -43,3 +43,4 @@ group :test do
   gem "timecop"
 end
 gem "RedCloth"
+gem "table_builder", :git => "https://github.com/raw1z/table_builder.git"

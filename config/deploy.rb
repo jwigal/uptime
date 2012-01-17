@@ -1,4 +1,9 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+# # Load RVM's capistrano plugin.    
+require "rvm/capistrano"
 require 'bundler/capistrano'
+set :rvm_ruby_string, 'ree'
 
 set :application, "uptime"
 set :repository,  "git@github.com:jwigal/uptime.git"

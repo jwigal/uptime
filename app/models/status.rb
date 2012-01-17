@@ -20,6 +20,15 @@ class Status < ActiveRecord::Base
     where(["created_at >= ?", 60.minutes.ago])    
   end
   
+  def up_status
+    return unless is_down?
+    service.statuses.up.where(["statuses.updated_at >= ? ", updated_at]).order("statuses.updated_at").first
+  end
+  
+  def down_time
+    return unless up_status
+    (up_status.updated_at - updated_at) / 60
+  end  
   
   def self.acknowledged
     where(:acknowledged => true)
@@ -32,6 +41,10 @@ class Status < ActiveRecord::Base
   def formatted_time
     updated_at.strftime("%l:%M %p %Z").gsub(/( 0|^0|^ )/,' ') + 
     " (#{updated_at.utc.strftime("%H:%M")} UTC)"
+  end
+  
+  def to_date
+    updated_at.to_date
   end
   
   
