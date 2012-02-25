@@ -1,9 +1,9 @@
 <div class="sidebar">
   <h2 class="first">Our Uptime</h2>
   <ul>
-    <li><strong>Last 3 months:</strong> <%= link_to number_to_percentage( @uptime[3], :precision => 5), calendar_path %></li>
-    <li><strong>Last 6 months:</strong> <%= link_to number_to_percentage( @uptime[6], :precision => 5)  %></li>
-    <li><strong>Last Year:</strong> <%= link_to number_to_percentage( @uptime[12], :precision => 5)  %></li>
+    <li><strong>Last 3 months:</strong> <br /><%= link_to number_to_percentage( @uptime[3], :precision => 5), calendars_path %></li>
+    <li><strong>Last 6 months:</strong> <br /><%= link_to number_to_percentage( @uptime[6], :precision => 5), calendars_path  %></li>
+    <li><strong>Last Year:</strong> <br /><%= link_to number_to_percentage( @uptime[12], :precision => 5), calendars_path  %></li>
   </ul>
   <h2>Contact Us</h2>
   <p>You can get in touch with us at:</p>
