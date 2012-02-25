@@ -2,8 +2,8 @@ Uptime::Application.routes.draw do
   get "calendar/index"
 
   resources :services
-  resources :calendars
-
+  match "/calendar" => "calendar#index", :as => :calendar
+  
   # devise_for :users
   root :to => "statuses#index"  
     
