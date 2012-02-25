@@ -19,17 +19,17 @@ class Status < ActiveRecord::Base
   def self.in_last_hour
     where(["created_at >= ?", 60.minutes.ago])    
   end
-  
+
   def up_status
     return unless is_down?
-    service.statuses.up.where(["statuses.updated_at >= ? ", updated_at]).order("statuses.updated_at").first
+    service.statuses.up.where(["statuses.created_at >= ? ", created_at]).order("statuses.created_at").last
   end
   
   def down_time
     return unless up_status
-    (up_status.updated_at - updated_at) / 60
+    (up_status.created_at - created_at) / 60
   end  
-  
+
   def self.acknowledged
     where(:acknowledged => true)
   end

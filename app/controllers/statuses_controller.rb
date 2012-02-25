@@ -10,7 +10,11 @@ class StatusesController < ApplicationController
         @statuses = @statuses.for_public unless current_user 
         @statuses = @statuses.group_by(&:formatted_date) unless request.format.to_sym == :rss
         @services = Service.order("name")
-        @history = Status.where(["statuses.updated_at >= ?", 1.year.ago]).all
+        # @history = Status.where(["statuses.updated_at >= ?", 1.year.ago]).all
+        @uptime = {3 => Outage.uptime(3.months.ago) * 100.0}
+        @uptime[6] = Outage.uptime( 6.months.ago) * 100.0
+        @uptime[12] = Outage.uptime( 12.months.ago) * 100.0
+        
 #        @dates = Status.select("year(created_at) year, month(created_at) month").group("year(created_at), month(created_at)")
       end
       format.js do 

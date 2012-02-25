@@ -1,5 +1,11 @@
 <div class="sidebar">
-  <h2 class="first">Contact Us</h2>
+  <h2 class="first">Our Uptime</h2>
+  <ul>
+    <li><strong>Last 3 months:</strong> <%= number_to_percentage @uptime[3], :precision => 6 %></li>
+    <li><strong>Last 6 months:</strong> <%= number_to_percentage @uptime[6], :precision => 6  %></li>
+    <li><strong>Last Year:</strong> <%= number_to_percentage @uptime[12], :precision => 6  %></li>
+  </ul>
+  <h2>Contact Us</h2>
   <p>You can get in touch with us at:</p>
   <ul>
     <li><%= mail_to "support@assignr.com", "support@assignr.com", :encode => "javascript" %></li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828184920) do
+ActiveRecord::Schema.define(:version => 20120225023656) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20110828184920) do
     t.boolean  "is_up"
     t.boolean  "is_down"
     t.string   "image_path"
+  end
+
+  create_table "outages", :force => true do |t|
+    t.integer  "minutes"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reason"
   end
 
   create_table "services", :force => true do |t|
