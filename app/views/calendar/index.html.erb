@@ -7,20 +7,16 @@
 			editable: false,
 			
 			events: "/calendar.json",
-						
-			loading: function(bool) {
-				if (bool) $('#loading').show();
-				else $('#loading').hide();
-			}
-			
+									
 		});
 		
 	});
 
 </script>
 <% content_for :title do %>
-  Uptime Calendar</span>
+  Down Time Calendar</span>
 <% end %>
-
+<p>This calendar shows any planned maintenance, or unplanned outages for assignr.com.  Most other sites only include unplanned outages when they calculate an uptime percentage.  Our uptime percentages are a "true" measure of our up-time, and they include both planned and unplanned maintenance.  We don't think it matters whether we planned to be offline or not. </p>
+<p>We had a major outage in August, and several other related unplanned outages in September. In October we moved from a single server to a multiple-server cluster, which has significantly improved our up-time record.</p>
 <div id='loading' style='display:none'>loading...</div>
 <div id='calendar'></div>
