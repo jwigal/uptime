@@ -1,0 +1,26 @@
+<script type='text/javascript'>
+
+	$(document).ready(function() {
+	
+		$('#calendar').fullCalendar({
+		  aspectRatio: 2.5,
+			editable: false,
+			
+			events: "/calendar.json",
+						
+			loading: function(bool) {
+				if (bool) $('#loading').show();
+				else $('#loading').hide();
+			}
+			
+		});
+		
+	});
+
+</script>
+<% content_for :title do %>
+  Uptime Calendar</span>
+<% end %>
+
+<div id='loading' style='display:none'>loading...</div>
+<div id='calendar'></div>
