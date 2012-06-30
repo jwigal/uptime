@@ -7,7 +7,8 @@ class StatusesController < ApplicationController
     respond_to do |format|
       format.any(:html, :rss) do
         @statuses = Status.order("statuses.updated_at desc").where(["statuses.updated_at >= ?", 14.days.ago])
-        @statuses = @statuses.for_public unless current_user 
+        @statuses = @statuses.for_public unless current_user
+        @statuses = @statuses.find_by_date(params[:date]) if params[:date] 
         @statuses = @statuses.group_by(&:formatted_date) unless request.format.to_sym == :rss
         @services = Service.order("name")
         # @history = Status.where(["statuses.updated_at >= ?", 1.year.ago]).all

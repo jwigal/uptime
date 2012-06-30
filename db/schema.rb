@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(:version => 20120225023656) do
   create_table "outages", :force => true do |t|
     t.integer  "minutes"
     t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "reason"
   end
 

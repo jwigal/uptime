@@ -47,6 +47,10 @@ class Status < ActiveRecord::Base
     updated_at.to_date
   end
   
+  def self.find_by_date(date)
+    parsed_date = Date.parse(date).to_time
+    where(["statuses.updated_at between ? and ?", parsed_date.to_date.beginning_of_day, parsed_date.to_date.end_of_day])
+  end
   
   def self.for_public
     includes(:category).where(:categories => {:is_public => true})
