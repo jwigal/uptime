@@ -1,7 +1,7 @@
 # # Load RVM's capistrano plugin.    
 require "rvm/capistrano"
 require 'bundler/capistrano'
-set :rvm_ruby_string, 'ree'
+set :rvm_ruby_string, 'ruby-1.9.3-p194'
 set :rvm_type, :system
 set :application, "uptime"
 set :repository,  "git@github.com:jwigal/uptime.git"
