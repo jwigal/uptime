@@ -1,15 +1,14 @@
+<%#= render "layouts/sidebar" %>
 <script type='text/javascript'>
 
 	$(document).ready(function() {
-	
-		$('#calendar').fullCalendar({
-		  aspectRatio: 2.5,
-			editable: false,
-      dayClick: function(date, allDay, jsEvent, view) {
-        window.location.href="/statuses?date=" + escape(date);
-      },
-			events: "/calendar.json"									
-		});
+		$(".red").tooltip(
+      { offset: [10, 2],
+        predelay: 200,
+        effect: 'slide'  
+      }      
+      ).dynamic({ bottom: { direction: 'down', bounce: true } });
+    
 		
 	});
 
@@ -17,11 +16,40 @@
 
 </script>
 <% content_for :title do %>
-  Down Time Calendar</span>
+  Outage Calendar
 <% end %>
 <p>This calendar shows any planned maintenance, or unplanned outages for assignr.com.  Most other sites only include unplanned outages when they calculate an uptime percentage.  Our uptime percentages are a "true" measure of our up-time, and they include both planned and unplanned maintenance.  We don't think it matters whether we planned to be offline or not. </p>
 <% if Time.zone.now < Time.zone.parse("2012-08-01")%>
   <p>We had a major outage in August, and several other related unplanned outages in September. In October we moved from a single server to a multiple-server cluster, which has significantly improved our up-time record.</p>
 <% end %>
-<div id='loading' style='display:none'>loading...</div>
-<div id='calendar'></div>
+
+<h2>Our Up-Time</h2>
+<ul class="uptime">
+<li>  <strong>Last 3 months:</strong>
+  <%= number_to_percentage( @uptime[3], :precision => 4) %>
+  ( <%= (((365 *  60 * 24) * (1.0 - @uptime[3]/100.0))/4.0).ceil %> minutes outage time )
+</li>  
+<li>  <strong>Last 6 months:</strong> 
+  <%=  number_to_percentage( @uptime[6], :precision => 4)  %>
+  ( <%= (((365 *  60 * 24) * (1.0 - @uptime[6]/100.0))/2.0).ceil %> minutes outage time )
+</li>  
+<li>  <strong>Last 12 months:</strong> 
+  <%=  number_to_percentage( @uptime[12], :precision => 4)  %>
+  ( <%= (((365 *  60 * 24) * (1.0 - @uptime[12]/100.0))).ceil %> minutes outage time )
+</li>
+</ul>
+
+
+<div class="group months">
+  <% @dates.each_with_index do |date, i| %>
+    <div class="month month_<%= i %>">
+      <h2><%= date.strftime("%B %Y")%></h2>
+      <%= calendar_for(@outages, :year => date.year, :month => date.month) do |t| %>
+        <% t.day do |day, outages| %>
+          <% title = outages.collect{|o| "#{o.reason} (#{o.minutes} minutes)"}.join(", ")%>
+          <%= content_tag :div, nil, {:class => "day #{outages.any? ? "red" : "green"}", :title => title} %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>  
+</div>

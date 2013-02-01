@@ -92,3 +92,29 @@ h1{background: black url('/images/assignr_com.png') no-repeat 99% }
 .sidebar p{ margin: .5em 0; padding: 0}
 .sidebar img{ margin-right: .25em; margin-bottom: -4px}
 
+.day{width: 1em; height: 1em}
+.red {background-color:red}
+.green {background-color:green}
+.month table{border-collapse: collapse;}
+.notmonth .red , .notmonth .green {background-color:white;}
+span.outage{display:none;}
+
+.tooltip {
+	display:none;
+	background: #eed86a;
+	border: 3px solid #a89954;
+	font-size:12px;
+  max-width:160px;
+  width:expression(document.body.clientWidth > 250? "250px": "auto" );
+	padding:.5em 1em;
+	color: #000000;	
+	-moz-box-shadow: 3px 3px 3px #666;
+  -webkit-box-shadow: 3px 3px 3px #666;
+  box-shadow: 3px 3px 3px #666;
+  text-align:center;
+}
+
+div.month{width: 200px; float:left}
+div.month_4,
+div.month_8
+{clear:both}
