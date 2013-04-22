@@ -1,20 +1,4 @@
 <%#= render "layouts/sidebar" %>
-<script type='text/javascript'>
-
-	$(document).ready(function() {
-		$(".red").tooltip(
-      { offset: [10, 2],
-        predelay: 200,
-        effect: 'slide'  
-      }      
-      ).dynamic({ bottom: { direction: 'down', bounce: true } });
-    
-		
-	});
-
-
-
-</script>
 <% content_for :title do %>
   Outage Calendar
 <% end %>
@@ -43,11 +27,22 @@
 <div class="group months">
   <% @dates.each_with_index do |date, i| %>
     <div class="month month_<%= i %>">
-      <h2><%= date.strftime("%B %Y")%></h2>
+      <h2 class="<%= date.year == Time.zone.now.year ? "this" : "last" %>"><%= date.strftime("%B %Y")%></h2>
       <%= calendar_for(@outages, :year => date.year, :month => date.month) do |t| %>
         <% t.day do |day, outages| %>
+        <% klass = case
+           when day.end_of_day > Time.zone.now.end_of_day
+             "blue"
+           when outages.any?{|o| o.minutes >= 15}
+             "red"
+           when outages.any?
+             "yellow"
+           else 
+             "green"
+           end
+        %>
           <% title = outages.collect{|o| "#{o.reason} (#{o.minutes} minutes)"}.join(", ")%>
-          <%= content_tag :div, nil, {:class => "day #{outages.any? ? "red" : "green"}", :title => title} %>
+          <%= content_tag :div, nil, {:class => "day #{klass}", :title => title} %>
         <% end %>
       <% end %>
     </div>

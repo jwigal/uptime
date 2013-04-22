@@ -95,8 +95,13 @@ h1{background: black url('/images/assignr_com.png') no-repeat 99% }
 .day{width: 1em; height: 1em}
 .red {background-color:red}
 .green {background-color:green}
+.blue {background-color: #999999;}
+.yellow {background-color: yellow;}
 .month table{border-collapse: collapse;}
-.notmonth .red , .notmonth .green {background-color:white;}
+.notmonth .red , 
+.notmonth .green, 
+.notmonth .blue,
+.notmonth .yellow {background-color:white;}
 span.outage{display:none;}
 
 .tooltip {
@@ -114,7 +119,10 @@ span.outage{display:none;}
   text-align:center;
 }
 
-div.month{width: 200px; float:left}
-div.month_4,
+div.month{width: 250px; float:left; height: 160px; }
+/*div.month_4,
 div.month_8
-{clear:both}
+{clear:both}*/
+h2.last{
+  color: #999;
+}
