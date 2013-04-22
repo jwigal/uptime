@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
-  $(".red, .yellow").tooltip({ offset: [10, 2],
+  $(".red, .yellow").tooltip({ offset: [10, 50],
       predelay: 200,
       effect: 'slide'  
     });
